@@ -32,7 +32,7 @@ public class SurveyRespApiController {
         return surveyRespService.findById(id);
     }
 
-    @Operation(summary = "설문 전체 응답 요청!", description = "설문에 대한 전체응답정보를 요청합니다.")
+    @Operation(summary = "설문 전체 응답 요청!!", description = "설문에 대한 전체응답정보를 요청합니다.")
     @GetMapping("/surveys/{svyId}/resp")
     public List<SurveyRespsResponseDto> findAllRepsById (@PathVariable Integer svyId) {
         return surveyRespService.findAll(svyId);
