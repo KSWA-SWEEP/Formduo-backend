@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - 6379:6379
+  spring:
+    container_name: formduo-spring
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - redis
+#  react:
+#    build:
+#      context: ${PWD}/react-frontend
+#      dockerfile: ${PWD}/react-frontend/Dockerfile
+#    ports:
+#      - 3000:3000
+#    stdin_open: true
