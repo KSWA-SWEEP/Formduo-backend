@@ -15,7 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
 @RestController
-public class SurveyRepsApiController {
+public class SurveyRespApiController {
 
     private final SurveyRespService surveyRespService;
 
@@ -27,13 +27,13 @@ public class SurveyRepsApiController {
     }
 
     @Operation(summary = "설문 응답 조회 요청", description = "설문이 대한 특정 응답이 조회됩니다.")
-    @GetMapping("/surveys/reps/{id}")
+    @GetMapping("/surveys/resp/{id}")
     public SurveyRespsResponseDto findSurveyRespById (@PathVariable Integer id) {
         return surveyRespService.findById(id);
     }
 
     @Operation(summary = "설문 전체 응답 요청", description = "설문에 대한 전체응답정보를 요청합니다.")
-    @GetMapping("/surveys/{svyId}/reps")
+    @GetMapping("/surveys/{svyId}/resp")
     public List<SurveyRespsResponseDto> findAllRepsById (@PathVariable Integer svyId) {
         return surveyRespService.findAll(svyId);
     }
