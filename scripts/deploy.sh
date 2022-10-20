@@ -9,7 +9,7 @@ sudo docker-compose rm
 sudo docker rmi qkdrmsgh73/formduo
 
 # 도커 실행
-sudo docker-compose up
+sudo docker-compose -d up
 
 ## 도커허브 이미지 pull
 #sudo docker pull qkdrmsgh73/formduo
