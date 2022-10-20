@@ -3,13 +3,15 @@
 
 sudo docker-compose stop
 
-sudo docker-compose rm
+sudo docker rm redis
+
+sudo docker rm formduo-spring
 
 # 기존 이미지 삭제
 sudo docker rmi qkdrmsgh73/formduo
 
 # 도커 실행
-sudo docker-compose -d up
+sudo docker-compose up -d
 
 ## 도커허브 이미지 pull
 #sudo docker pull qkdrmsgh73/formduo
