@@ -1,5 +1,6 @@
 package com.sweep.formduo.web.dto.surveys;
 
+import com.sweep.formduo.domain.qbox.Qbox;
 import com.sweep.formduo.domain.surveys.Surveys;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,7 @@ public class SurveysResponseDto  {
     // 클라이언트가 요청했을 때 보여질 애들을 정합시다~.
 
     public SurveysResponseDto(Surveys entity){
-        System.out.println(entity.getSvyContent());
+//        System.out.println(entity.getSvyContent());
         this.id = entity.getId();
         this.regUser = entity.getEmail();
         this.svySt = entity.getSvySt();
@@ -49,6 +50,7 @@ public class SurveysResponseDto  {
         this.svyRespCount = entity.getSvyRespCount();
         this.svyRegDt = entity.getRegDt();
     }
+
 
 //    public Surveys toEntity() {
 //        return Surveys.builder()
