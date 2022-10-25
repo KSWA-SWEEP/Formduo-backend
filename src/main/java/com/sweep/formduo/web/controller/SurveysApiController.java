@@ -15,6 +15,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Tag(name = "설문", description = "설문 관련 api 입니다.")
@@ -61,8 +62,8 @@ public class SurveysApiController {
 
     @Operation(summary = "자신의 모든 설문 요청", description = "해당 아이디의 모든 설문이 조회됩니다.")
     @GetMapping("")
-    public List<SurveysResponseDto> getAllMySurveys () {
-        return surveyService.findAll();
+    public List<SurveysResponseDto> getAllMySurveys (HttpServletRequest request) {
+        return surveyService.findAll(request);
     }
 
 }

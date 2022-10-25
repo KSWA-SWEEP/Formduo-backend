@@ -12,6 +12,7 @@ import com.sweep.formduo.web.dto.surveys.SurveysUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -65,9 +66,9 @@ public class SurveyService {
         return entity.getSvyTitle();}
 
 
-    public List<SurveysResponseDto> findAll() {
+    public List<SurveysResponseDto> findAll(HttpServletRequest request) {
         // 설문이 있는지 없는지 확인
-        List<Surveys> list = surveysRepository.findAllByEmail(memberService.getMyInfo().getEmail());
+        List<Surveys> list = surveysRepository.findAllByEmail(memberService.getMyInfo(request).getEmail());
         // 소팅 조건
 //        Sort sort = Sort.by(Sort.Direction.DESC, "id", "regDt");
 //        List<Surveys> list = surveysRepository.findAll(sort);
