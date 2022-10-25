@@ -191,7 +191,10 @@ public class AuthService {
     public ResponseEntity<?> logout(HttpServletRequest request){
 
         String originAccessToken = HeaderUtil.getAccessToken(request);
-        String email = tokenProvider.getMemberEmailByToken(originAccessToken);
+        Authentication authentication = tokenProvider.getAuthentication(originAccessToken);
+
+        String email = authentication.getName();
+
         redisService.deleteValues(email);
         refreshTokenRepository.deleteByEmail(email);
 
