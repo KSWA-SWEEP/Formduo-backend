@@ -53,12 +53,12 @@ public class AuthApisController {
         return authService.login(loginReqDTO, response);
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout(
-            HttpServletRequest request) {
-
-        return authService.logout(request);
-    }
+//    @PostMapping("/logout")
+//    public ResponseEntity<?> logout(
+//            HttpServletRequest request) {
+//
+//        return authService.logout(request);
+//    }
 
     //로그아웃 만들기
 

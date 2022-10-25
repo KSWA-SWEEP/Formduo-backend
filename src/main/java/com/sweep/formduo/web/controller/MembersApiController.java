@@ -1,5 +1,6 @@
 package com.sweep.formduo.web.controller;
 
+import com.sweep.formduo.service.auth.AuthService;
 import com.sweep.formduo.web.dto.members.MemberIsMyPwDTO;
 import com.sweep.formduo.web.dto.members.MemberRemoveDTO;
 import com.sweep.formduo.web.dto.members.MemberRespDTO;
@@ -9,7 +10,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Slf4j
@@ -19,6 +23,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/members")
 public class MembersApiController {
     private final MemberService memberService;
+
+
 
     @Operation(summary = "자신 정보 조회", description = "자신의 정보를 요청합니다.")
     @GetMapping("")
@@ -47,6 +53,14 @@ public class MembersApiController {
     @Operation(summary = "내 비밀번호 검증(확인)", description = "이메일과 비밀번호 입력 시 비밀번호가 맞는지 확인")
     @PostMapping("/valid-pw")
     public boolean isMyPw(@RequestBody MemberIsMyPwDTO dto) {return memberService.isMyPassword(dto);}
+
+    private final AuthService authService;
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(
+            HttpServletRequest request) {
+
+        return authService.logout(request);
+    }
 
 //    /**
 //     * @PreAuthorize 는 ControllerAdvice에 의해 에러핸들링됨
