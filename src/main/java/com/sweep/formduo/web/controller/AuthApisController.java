@@ -53,6 +53,14 @@ public class AuthApisController {
         return authService.login(loginReqDTO, response);
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(
+            HttpServletRequest request) {
+
+        String msg = authService.logout(request);
+        return ResponseEntity.ok(msg);
+    }
+
     //로그아웃 만들기
 
 //    @PostMapping("/login/kakao")
