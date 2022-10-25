@@ -185,4 +185,15 @@ public class AuthService {
 //        return ApiResponse.success("token", newAccessToken);
             return tokenDto;
         }
+
+    @Transactional
+    public String logout(HttpServletRequest request){
+
+        String originAccessToken = HeaderUtil.getAccessToken(request);
+        String email = tokenProvider.getMemberEmailByToken(originAccessToken);
+        redisService.deleteValues(email);
+        refreshTokenRepository.deleteByEmail(email);
+
+        return "로그아웃 되었습니다.";
+    }
 }
