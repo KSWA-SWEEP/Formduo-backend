@@ -28,8 +28,8 @@ public class MembersApiController {
 
     @Operation(summary = "자신 정보 조회", description = "자신의 정보를 요청합니다.")
     @GetMapping("")
-    public MemberRespDTO getMyInfo() {
-        return memberService.getMyInfo();
+    public MemberRespDTO getMyInfo(HttpServletRequest request) {
+        return memberService.getMyInfo(request);
     }
 
     @Operation(summary = "이메일 정보 조회", description = "해당 이메일의 정보를 요청합니다.")

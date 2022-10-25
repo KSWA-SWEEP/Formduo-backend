@@ -1,5 +1,7 @@
 package com.sweep.formduo.service.members;
 
+import com.sweep.formduo.jwt.TokenProvider;
+import com.sweep.formduo.util.HeaderUtil;
 import com.sweep.formduo.util.SecurityUtil;
 import com.sweep.formduo.domain.members.Members;
 import com.sweep.formduo.domain.members.MemberRepository;
@@ -15,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 /**
  * MemberService 설명 : 멤버 등록 및 조회
@@ -26,6 +30,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
+
+    private final TokenProvider tokenProvider;
 
     /**
      * @param email
@@ -42,8 +48,10 @@ public class MemberService {
      * @return 현재 securityContext에 있는 유저 정보를 반환한다.
      */
     @Transactional(readOnly = true)
-    public MemberRespDTO getMyInfo() {
-        return memberRepository.findByEmail(SecurityUtil.getCurrentMemberEmail())
+    public MemberRespDTO getMyInfo(HttpServletRequest request) {
+        String accessToken = HeaderUtil.getAccessToken(request);
+        String email = tokenProvider.getMemberEmailByToken(accessToken);
+        return memberRepository.findByEmail(email)
                 .map(MemberRespDTO::of)
                 .orElseThrow(() -> new BizException(MemberExceptionType.NOT_FOUND_USER));
     }
