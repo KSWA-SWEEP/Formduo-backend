@@ -24,6 +24,7 @@ import com.sweep.formduo.jwt.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -187,13 +188,13 @@ public class AuthService {
         }
 
     @Transactional
-    public String logout(HttpServletRequest request){
+    public ResponseEntity<?> logout(HttpServletRequest request){
 
         String originAccessToken = HeaderUtil.getAccessToken(request);
         String email = tokenProvider.getMemberEmailByToken(originAccessToken);
         redisService.deleteValues(email);
         refreshTokenRepository.deleteByEmail(email);
 
-        return "로그아웃 되었습니다.";
+        return ResponseEntity.ok("로그아웃 되었습니다.");
     }
 }

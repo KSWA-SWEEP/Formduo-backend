@@ -57,8 +57,7 @@ public class AuthApisController {
     public ResponseEntity<?> logout(
             HttpServletRequest request) {
 
-        String msg = authService.logout(request);
-        return ResponseEntity.ok(msg);
+        return authService.logout(request);
     }
 
     //로그아웃 만들기
