@@ -193,7 +193,9 @@ public class AuthService {
         String originAccessToken = HeaderUtil.getAccessToken(request);
         Authentication authentication = tokenProvider.getAuthentication(originAccessToken);
 
+        System.out.println(originAccessToken);
         String email = authentication.getName();
+        System.out.println(email);
 
         redisService.deleteValues(email);
         refreshTokenRepository.deleteByEmail(email);
