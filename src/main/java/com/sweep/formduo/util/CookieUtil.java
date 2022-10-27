@@ -31,8 +31,9 @@ public class CookieUtil {
 
         ResponseCookie cookie = ResponseCookie.from(name, value)
                 .path("/")
-                .sameSite("none")
-                .httpOnly(false)
+                .sameSite("None")
+                .secure(true)
+                .httpOnly(true)
                 .build();
 
 
