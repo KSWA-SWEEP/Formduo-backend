@@ -2,11 +2,15 @@ package com.sweep.formduo.web.controller;
 
 
 import com.sweep.formduo.service.surveys.SurveyRespService;
+import com.sweep.formduo.util.RequestUtil;
+import com.sweep.formduo.web.dto.survey_resps.ConvReqDto;
+import com.sweep.formduo.web.dto.survey_resps.ConvResDto;
 import com.sweep.formduo.web.dto.survey_resps.SurveyRespsRequestDto;
 import com.sweep.formduo.web.dto.survey_resps.SurveyRespsResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.parser.ParseException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,6 +40,12 @@ public class SurveyRespApiController {
     @GetMapping("/surveys/{svyId}/resp")
     public List<SurveyRespsResponseDto> findAllRepsById (@PathVariable Integer svyId) {
         return surveyRespService.findAll(svyId);
+    }
+
+    @Operation(summary = "설문 발화 분석", description = "답변에 대한 카카오 발화분석 api 요청")
+    @PostMapping("/conv")
+    public ConvResDto conv(@RequestBody ConvReqDto convDto) throws ParseException {
+        return RequestUtil.restRequest(convDto.getMsg());
     }
 
 }

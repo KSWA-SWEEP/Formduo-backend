@@ -1,19 +1,13 @@
 package com.sweep.formduo.web.controller;
 
-import com.sweep.formduo.util.ApiResponse;
-import com.sweep.formduo.util.CookieUtil;
 import com.sweep.formduo.web.dto.jwt.TokenDTO;
-import com.sweep.formduo.web.dto.jwt.TokenReqDTO;
 import com.sweep.formduo.web.dto.login.LoginReqDTO;
 import com.sweep.formduo.web.dto.members.MemberReqDTO;
 import com.sweep.formduo.web.dto.members.MemberRespDTO;
 import com.sweep.formduo.service.auth.AuthService;
-import jdk.nashorn.internal.parser.Token;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,6 +46,8 @@ public class AuthApisController {
             @RequestBody LoginReqDTO loginReqDTO) {
         return authService.login(loginReqDTO, response);
     }
+
+
 
 //    @PostMapping("/logout")
 //    public ResponseEntity<?> logout(

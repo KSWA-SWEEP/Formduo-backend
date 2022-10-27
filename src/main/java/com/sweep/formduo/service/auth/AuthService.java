@@ -9,7 +9,6 @@ import com.sweep.formduo.domain.token.RefreshToken;
 import com.sweep.formduo.domain.token.RefreshTokenRepository;
 import com.sweep.formduo.util.HeaderUtil;
 import com.sweep.formduo.service.members.CustomUserDetailsService;
-import com.sweep.formduo.util.ApiResponse;
 import com.sweep.formduo.util.CookieUtil;
 import com.sweep.formduo.web.dto.jwt.TokenDTO;
 import com.sweep.formduo.web.dto.login.LoginReqDTO;
@@ -37,11 +36,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.Null;
 import java.time.Duration;
 import java.util.HashSet;
-import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
 
 @Slf4j

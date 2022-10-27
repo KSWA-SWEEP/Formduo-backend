@@ -33,12 +33,12 @@ public class SurveyRespService {
         // 기간이 지났는지 확인
         if(surveys.getSvyEndDt().isBefore(Instant.now()))
         {
-            return -2;
+           throw new IllegalArgumentException("설문 기간이 지났습니다.");
         }
         // 응답수가 최대 수를 넘었는지 확인
         if(surveys.getSvyRespMax() < surveys.getSvyRespCount()+1)
         {
-            return -1;
+            throw new IllegalArgumentException("설문 응답자 수가 초과되었습니다.");
         }
         surveys.countUp(surveys.getSvyRespCount()+1);
         return surveyRespsRepository.save(requestDto.toEntity(surveys)).getId();
