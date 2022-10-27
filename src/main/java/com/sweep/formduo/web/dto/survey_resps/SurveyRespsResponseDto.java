@@ -22,6 +22,8 @@ public class SurveyRespsResponseDto {
     private Instant svyRespDt;
     private List<Map<String, Object>> svyRespContent;
 
+    private String svyType;
+
 
     public SurveyRespsResponseDto(SurveyResps entity){
         this.id = entity.getId();
@@ -30,5 +32,6 @@ public class SurveyRespsResponseDto {
         this.svyRespsMax = entity.getSurvey().getSvyRespMax();
         this.svyRespDt = entity.getSvyRespDt();
         this.svyRespContent = entity.getSvyRespContent();
+        this.svyType = entity.getSurvey().getSvyType();
     }
 }
