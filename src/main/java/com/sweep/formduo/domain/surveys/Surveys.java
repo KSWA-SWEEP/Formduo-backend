@@ -70,6 +70,9 @@ public class Surveys {
     @Column(name = "SVY_RESP_COUNT")
     private Integer svyRespCount;
 
+    @Column(name = "SVY_TYPE")
+    private String svyType;
+
     @OneToMany(mappedBy = "survey")
     List<SurveyResps> surveyResps = new ArrayList<SurveyResps>();
 
@@ -83,7 +86,7 @@ public class Surveys {
                    String svyIntro, List<Map<String, Object>> svyContent, char delYn,
                    String svyEndMsg, int svyRespCount, int svyRespMax,
                    Instant regDt, Instant svyEndDt, Instant svyStartDt,
-                   Instant updDt, Members members){
+                   Instant updDt, Members members, String svyType){
         this.svySt = svySt;
         this.email = email;
         this.svyTitle = svyTitle;
@@ -94,6 +97,7 @@ public class Surveys {
         this.regDt = regDt;
         this.svyStartDt = svyStartDt;
         this.svyEndDt = svyEndDt;
+        this.svyType = svyType;
         this.svyRespMax = svyRespMax;
         this.svyRespCount = svyRespCount;
         this.updDt = updDt;

@@ -31,6 +31,7 @@ public class SurveysResponseDto  {
 
     private Integer svyRespMax;
     private Integer svyRespCount;
+    private String svyType;
 
     // 클라이언트가 요청했을 때 보여질 애들을 정합시다~.
 
@@ -49,6 +50,7 @@ public class SurveysResponseDto  {
         this.svyRespMax = entity.getSvyRespMax();
         this.svyRespCount = entity.getSvyRespCount();
         this.svyRegDt = entity.getRegDt();
+        this.svyType = entity.getSvyType();
     }
 
 

@@ -27,11 +27,12 @@ public class SurveysRequestDto {
     private String svyEndMsg;
     private Integer svyRespMax;
     private Integer svyRespCount;
+    private String svyType= "";
 
     // 클라이언트가 요청할때 필요한 정보들입니다~.
 
     @Builder
-    public SurveysRequestDto(String svyTitle, String svyIntro, List<Map<String, Object>> svyContent,
+    public SurveysRequestDto(String svyTitle, String svyIntro, List<Map<String, Object>> svyContent, String svyType,
                              String svyEndMsg, String svySt, Instant svyStartDt, Instant svyEndDt, int svyRespMax, int svyRespCount){
 
         this.svySt = svySt;
@@ -43,6 +44,7 @@ public class SurveysRequestDto {
         this.svyEndDt = svyEndDt;
         this.svyRespMax = svyRespMax;
         this.svyRespCount = svyRespCount;
+        this.svyType = svyType;
     }
 
     public Surveys toEntity(Members members) {
@@ -61,6 +63,7 @@ public class SurveysRequestDto {
                 .svyRespCount(svyRespCount)
                 .svyRespMax(svyRespMax)
                 .members(members)
+                .svyType(svyType)
                 .build();
     }
 }
