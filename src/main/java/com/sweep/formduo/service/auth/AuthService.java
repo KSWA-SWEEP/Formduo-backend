@@ -98,8 +98,8 @@ public class AuthService {
 
         int cookieMaxAge = (int) rtkLive / 60;
 
-        CookieUtil.addCookie(response, "access_token", accessToken, cookieMaxAge);
-        CookieUtil.addCookie(response, "refresh_token", refreshToken, cookieMaxAge);
+//        CookieUtil.addCookie(response, "access_token", accessToken, cookieMaxAge);
+//        CookieUtil.addCookie(response, "refresh_token", refreshToken, cookieMaxAge);
 //        System.out.println("redis " + redisService.getValues(email));
 
         //mysql에 refresh token 저장
