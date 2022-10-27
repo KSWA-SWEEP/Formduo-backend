@@ -44,7 +44,7 @@ public class Qbox {
     @Column(name = "q_video")
     private String qVideo;
 
-    @Column(name = "q_multi", nullable = false)
+    @Column(name = "q_multi")
     private String qMulti;
 
     @Type(type = "json")

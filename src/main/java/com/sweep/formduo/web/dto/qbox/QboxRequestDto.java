@@ -25,7 +25,7 @@ public class QboxRequestDto {
     private String name;
     private String qImage = "";
     private String qVideo = "";
-    private String qMulti;
+    private String qMulti = "";
     private List<Map<String, Object>> qContents;
     private char contentYn;
 
