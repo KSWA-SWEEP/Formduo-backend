@@ -32,7 +32,7 @@ public class SurveyService {
     public Integer save(SurveysRequestDto requestDto) {
         Members members = memberRepository.findByEmail(SecurityUtil.getCurrentMemberEmail())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 사용자입니다. " + SecurityUtil.getCurrentMemberEmail()));
-
+        //설문 저장
         return surveysRepository.save(requestDto.toEntity(members)).getId();
     }
 
