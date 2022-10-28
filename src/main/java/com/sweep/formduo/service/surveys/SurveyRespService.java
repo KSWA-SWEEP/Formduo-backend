@@ -7,6 +7,7 @@ import com.sweep.formduo.domain.surveys.SurveysRepository;
 import com.sweep.formduo.web.dto.survey_resps.SurveyRespsRequestDto;
 import com.sweep.formduo.web.dto.survey_resps.SurveyRespsResponseDto;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
+@Slf4j
 @Service
 public class SurveyRespService {
     private final SurveysRepository surveysRepository;
