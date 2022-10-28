@@ -70,6 +70,7 @@ public class SurveyService {
 
     public List<SurveysResponseDto> findAll(HttpServletRequest request) {
         // 설문이 있는지 없는지 확인
+
         List<Surveys> list = surveysRepository.findAllByEmail(memberService.getMyInfo(request).getEmail());
         // 소팅 조건
 //        Sort sort = Sort.by(Sort.Direction.DESC, "id", "regDt");
