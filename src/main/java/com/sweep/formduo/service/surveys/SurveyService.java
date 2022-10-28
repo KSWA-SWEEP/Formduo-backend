@@ -66,7 +66,7 @@ public class SurveyService {
 
         List<Surveys> list = surveysRepository.findAllByEmailAndSvyType(memberService.getMyInfo(request).getEmail(), type);
 
-        if(list.isEmpty()) throw new IllegalArgumentException("해당 타입의 설문이 없습니다. "+ type);
+//        if(list.isEmpty()) throw new IllegalArgumentException("해당 타입의 설문이 없습니다. "+ type);
 
         return list.stream().map(SurveysResponseDto::new).collect(Collectors.toList());
     }
@@ -87,7 +87,7 @@ public class SurveyService {
 
         List<Surveys> list = surveysRepository.findAllByEmail(memberService.getMyInfo(request).getEmail());
 
-        if(list.isEmpty()) throw new IllegalArgumentException("생성된 설문이 없습니다. ");
+//        if(list.isEmpty()) throw new IllegalArgumentException("생성된 설문이 없습니다. ");
         // 소팅 조건
 //        Sort sort = Sort.by(Sort.Direction.DESC, "id", "regDt");
 //        List<Surveys> list = surveysRepository.findAll(sort);
