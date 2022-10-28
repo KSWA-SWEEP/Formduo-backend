@@ -7,6 +7,7 @@ import com.sweep.formduo.web.dto.surveys.SurveysRequestDto;
 import com.sweep.formduo.web.dto.surveys.SurveysResponseDto;
 import com.sweep.formduo.web.dto.surveys.SurveysUpdateRequestDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -64,6 +65,12 @@ public class SurveysApiController {
     @GetMapping("")
     public List<SurveysResponseDto> getAllMySurveys (HttpServletRequest request) {
         return surveyService.findAll(request);
+    }
+
+    @Operation(summary = "설문 종류별 요청", description = "해당 종류의 내가 만든 설문 전체를 조회합니다.")
+    @GetMapping("type")
+    public List<SurveysResponseDto> getByTypeMySurveys (@RequestParam String type, HttpServletRequest request) {
+        return surveyService.findByType(type, request);
     }
 
 }

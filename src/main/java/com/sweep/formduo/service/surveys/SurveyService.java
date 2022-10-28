@@ -11,10 +11,12 @@ import com.sweep.formduo.web.dto.surveys.SurveysResponseDto;
 import com.sweep.formduo.web.dto.surveys.SurveysUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,12 +53,23 @@ public class SurveyService {
         return id;
     }
 
+    @Transactional(readOnly = true)
     public SurveysResponseDto findById(int id){
         Surveys entity = surveysRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 설문이 없습니다. id ="+ id));
 
         System.out.println(entity);
         return new SurveysResponseDto(entity);}
+
+    @Transactional(readOnly = true)
+    public List<SurveysResponseDto> findByType(String type, HttpServletRequest request){
+
+        List<Surveys> list = surveysRepository.findAllByEmailAndSvyType(memberService.getMyInfo(request).getEmail(), type);
+
+        if(list.isEmpty()) throw new IllegalArgumentException("해당 타입의 설문이 없습니다. "+ type);
+
+        return list.stream().map(SurveysResponseDto::new).collect(Collectors.toList());
+    }
 
     @Transactional
     public String remove(int id){
@@ -68,10 +81,13 @@ public class SurveyService {
         return entity.getSvyTitle();}
 
 
+    @Transactional(readOnly = true)
     public List<SurveysResponseDto> findAll(HttpServletRequest request) {
         // 설문이 있는지 없는지 확인
 
         List<Surveys> list = surveysRepository.findAllByEmail(memberService.getMyInfo(request).getEmail());
+
+        if(list.isEmpty()) throw new IllegalArgumentException("생성된 설문이 없습니다. ");
         // 소팅 조건
 //        Sort sort = Sort.by(Sort.Direction.DESC, "id", "regDt");
 //        List<Surveys> list = surveysRepository.findAll(sort);

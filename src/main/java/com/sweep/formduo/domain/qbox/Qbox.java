@@ -1,17 +1,12 @@
 package com.sweep.formduo.domain.qbox;
 
-import com.sweep.formduo.domain.members.Members;
-import com.sweep.formduo.domain.survey_resps.SurveyResps;
-import com.vladmihalcea.hibernate.type.json.JsonType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 

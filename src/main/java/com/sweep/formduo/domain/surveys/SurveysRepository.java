@@ -13,4 +13,6 @@ public interface SurveysRepository extends JpaRepository<Surveys, Integer> {
     @Query(" select s from Surveys s where s.delYn = 'N' and s.email = ?1 ")
     public List<Surveys> findAllByEmail(String email);
 
+    @Query(" select s from Surveys s where s.delYn = 'N' and s.email = ?1 and s.svyType= ?2")
+    public List<Surveys> findAllByEmailAndSvyType(String email, String type);
 }

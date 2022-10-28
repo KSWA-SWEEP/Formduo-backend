@@ -2,7 +2,6 @@ package com.sweep.formduo.service.members;
 
 import com.sweep.formduo.jwt.TokenProvider;
 import com.sweep.formduo.util.HeaderUtil;
-import com.sweep.formduo.util.SecurityUtil;
 import com.sweep.formduo.domain.members.Members;
 import com.sweep.formduo.domain.members.MemberRepository;
 import com.sweep.formduo.web.dto.members.MemberIsMyPwDTO;

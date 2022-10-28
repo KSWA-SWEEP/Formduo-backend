@@ -2,7 +2,6 @@ package com.sweep.formduo.web.dto.surveys;
 
 import com.sweep.formduo.domain.members.Members;
 import com.sweep.formduo.domain.surveys.Surveys;
-import com.sweep.formduo.util.SecurityUtil;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

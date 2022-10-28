@@ -1,15 +1,9 @@
 package com.sweep.formduo.service.qbox;
 
-import com.sweep.formduo.domain.members.Members;
-import com.sweep.formduo.domain.posts.Posts;
 import com.sweep.formduo.domain.qbox.Qbox;
 import com.sweep.formduo.domain.qbox.QboxRepository;
-import com.sweep.formduo.util.SecurityUtil;
-import com.sweep.formduo.web.dto.posts.PostsResponseDto;
 import com.sweep.formduo.web.dto.qbox.QboxRequestDto;
 import com.sweep.formduo.web.dto.qbox.QboxResponseDto;
-import com.sweep.formduo.web.dto.surveys.SurveysRequestDto;
-import com.sweep.formduo.web.dto.surveys.SurveysResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
