@@ -668,3 +668,8 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 [2022-10-28 15:19:16:7294][https-jsse-nio-8080-exec-8] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 160 ms
 [2022-10-28 15:19:22:13335][https-jsse-nio-8080-exec-7] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 54 ms
 [2022-10-28 15:20:30:81551][https-jsse-nio-8080-exec-10] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+[2022-10-28 15:29:46:637528][lettuce-eventExecutorLoop-1-1] INFO  i.l.c.protocol.ConnectionWatchdog - Reconnecting, last destination was /210.109.60.247:10007
+[2022-10-28 15:29:46:637562][lettuce-nioEventLoop-6-2] INFO  i.l.c.protocol.ReconnectionHandler - Reconnected to 210.109.60.247:10007
+[2022-10-28 15:44:30:1521041][SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+[2022-10-28 15:44:30:1521046][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+[2022-10-28 15:44:30:1521050][SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
