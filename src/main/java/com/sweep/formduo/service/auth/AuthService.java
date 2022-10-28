@@ -190,9 +190,12 @@ public class AuthService {
 
     @Transactional
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> logout(HttpServletRequest request){
+    public ResponseEntity<?> logout(HttpServletRequest request, HttpServletResponse response){
 
         String originAccessToken = HeaderUtil.getAccessToken(request);
+
+        CookieUtil.deleteCookie(request, response, "access_token");
+        CookieUtil.deleteCookie(request, response, "refresh_token");
 
         Authentication authentication = tokenProvider.getAuthentication(originAccessToken);
         String email = authentication.getName();

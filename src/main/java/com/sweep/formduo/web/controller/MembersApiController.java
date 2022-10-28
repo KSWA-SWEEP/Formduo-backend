@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @Slf4j
@@ -57,9 +58,9 @@ public class MembersApiController {
     private final AuthService authService;
     @PostMapping("/logout")
     public ResponseEntity<?> logout(
-            HttpServletRequest request) {
+            HttpServletRequest request, HttpServletResponse response) {
 
-        return authService.logout(request);
+        return authService.logout(request, response);
     }
 
 //    /**

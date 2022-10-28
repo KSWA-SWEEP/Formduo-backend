@@ -19,12 +19,11 @@ import java.util.*;
 
 public class RequestUtil {
 
-    @Value("${kakao.api-key}")
-    private static String api_key;
-    @Value("${kakao.end-url}")
-    private static String end_url;
+
     public static ConvResDto restRequest(String msg) throws ParseException {
 
+        String api_key = "4c40dd27da9e877f7df64b6d77df572b";
+        String end_url = "https://a3d8fbea-c67e-4cac-8e14-f0af2ee1671f.api.kr-central-1.kakaoi.io/ai/conversation/a170a37cbdfd45b5883c82cf4552e324";
         String result = "";
         //보낼 파라메터 셋팅
 //        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
