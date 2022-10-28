@@ -42,7 +42,7 @@ public class SurveyRespApiController {
         return surveyRespService.findAll(svyId);
     }
 
-    @Operation(summary = "설문 발화 분석", description = "답변에 대한 카카오 발화분석 api 요청")
+    @Operation(summary = "설문 발화 분석", description = "모든 질문들의 답변 입력 시 감정분석을 통해 제일 많이 나온 감정을 반환합니다.")
     @PostMapping("/conv")
     public ConvResDto conv(@RequestBody ConvReqDto convDto) throws ParseException {
         return RequestUtil.restRequest(convDto.getMsg());
