@@ -1,11 +1,15 @@
 package com.sweep.formduo.web.controller;
 
+import com.sweep.formduo.domain.members.Members;
 import com.sweep.formduo.web.dto.jwt.TokenDTO;
 import com.sweep.formduo.web.dto.login.LoginReqDTO;
 import com.sweep.formduo.web.dto.members.MemberEmailDto;
 import com.sweep.formduo.web.dto.members.MemberReqDTO;
 import com.sweep.formduo.web.dto.members.MemberRespDTO;
 import com.sweep.formduo.service.auth.AuthService;
+import com.sweep.formduo.web.dto.members.MemberUpdateDTO;
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 /**
  * AuthController 설명 : auth controller
@@ -49,11 +54,17 @@ public class AuthApisController {
     }
 
     @PostMapping("/isMember")
-    public boolean isMember(
+    public Optional<Members> isMember(
             @RequestBody MemberEmailDto memberRequestDto) {
         return authService.isMember(memberRequestDto);
     }
 
+    @Hidden
+    @Operation(summary = "비밀번호 변경", description = "비밀번호 재설정을 요청합니다.")
+    @PutMapping("/changePw")
+    public void changePw(@RequestBody MemberUpdateDTO dto) {
+        authService.updatePw(dto);
+    }
 
 //    @PostMapping("/logout")
 //    public ResponseEntity<?> logout(

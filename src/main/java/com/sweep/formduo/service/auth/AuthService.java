@@ -21,6 +21,7 @@ import com.sweep.formduo.util.exceptionhandler.JwtExceptionType;
 import com.sweep.formduo.util.exceptionhandler.MemberExceptionType;
 import com.sweep.formduo.jwt.CustomEmailPasswordAuthToken;
 import com.sweep.formduo.jwt.TokenProvider;
+import com.sweep.formduo.web.dto.members.MemberUpdateDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,6 +40,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.Duration;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Slf4j
@@ -221,10 +223,20 @@ public class AuthService {
     }
 
     @Transactional
-    public boolean isMember(MemberEmailDto memberRequestDto) {
+    public Optional<Members> isMember(MemberEmailDto memberRequestDto) {
         if (memberRepository.existsByEmail(memberRequestDto.getEmail())) {
-            return true;
+            return memberRepository.findByEmail(memberRequestDto.getEmail());
         }else
-            return false;
+            return null;
     }
+
+    @Transactional
+    public void updatePw(MemberUpdateDTO dto) {
+        Members members = memberRepository
+                .findByEmail(dto.getEmail())
+                .orElseThrow(() -> new BizException(MemberExceptionType.NOT_FOUND_USER));
+
+        members.updateMember(dto, passwordEncoder);
+    }
+
 }
