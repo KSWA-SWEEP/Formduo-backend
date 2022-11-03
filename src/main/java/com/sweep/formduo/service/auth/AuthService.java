@@ -12,6 +12,7 @@ import com.sweep.formduo.service.members.CustomUserDetailsService;
 import com.sweep.formduo.util.CookieUtil;
 import com.sweep.formduo.web.dto.jwt.TokenDTO;
 import com.sweep.formduo.web.dto.login.LoginReqDTO;
+import com.sweep.formduo.web.dto.members.MemberEmailDto;
 import com.sweep.formduo.web.dto.members.MemberReqDTO;
 import com.sweep.formduo.web.dto.members.MemberRespDTO;
 import com.sweep.formduo.util.exceptionhandler.AuthorityExceptionType;
@@ -217,5 +218,13 @@ public class AuthService {
 //        System.out.println(redisService.getValues(email));
 
         return ResponseEntity.ok("로그아웃 되었습니다.");
+    }
+
+    @Transactional
+    public boolean isMember(MemberEmailDto memberRequestDto) {
+        if (memberRepository.existsByEmail(memberRequestDto.getEmail())) {
+            return true;
+        }else
+            return false;
     }
 }

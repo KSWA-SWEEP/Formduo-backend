@@ -2,6 +2,7 @@ package com.sweep.formduo.web.controller;
 
 import com.sweep.formduo.web.dto.jwt.TokenDTO;
 import com.sweep.formduo.web.dto.login.LoginReqDTO;
+import com.sweep.formduo.web.dto.members.MemberEmailDto;
 import com.sweep.formduo.web.dto.members.MemberReqDTO;
 import com.sweep.formduo.web.dto.members.MemberRespDTO;
 import com.sweep.formduo.service.auth.AuthService;
@@ -47,6 +48,11 @@ public class AuthApisController {
         return authService.login(loginReqDTO, response);
     }
 
+    @PostMapping("/isMember")
+    public boolean isMember(
+            @RequestBody MemberEmailDto memberRequestDto) {
+        return authService.isMember(memberRequestDto);
+    }
 
 
 //    @PostMapping("/logout")
