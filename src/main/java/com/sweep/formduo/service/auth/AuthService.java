@@ -38,10 +38,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -57,6 +57,9 @@ public class AuthService {
     private final RedisService redisService;
     @Value("${jwt.refresh-token-expire-time}")
     private long rtkLive;
+
+    @Value("${jwt.access-token-expire-time}")
+    private long accExpTime;
 
 
     @Transactional
@@ -102,7 +105,11 @@ public class AuthService {
 
         // 로그인 여부 및 토큰 만료 시간 Cookie 설정
         String isLogin = "true";
-        String expTime = "expTime";
+        Date newExpTime = new Date(System.currentTimeMillis() + accExpTime);
+        SimpleDateFormat sdf;
+        sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+        String expTime = sdf.format(newExpTime);
         CookieUtil.addPublicCookie(response, "isLogin", isLogin, cookieMaxAge);
         CookieUtil.addPublicCookie(response, "expTime", expTime, cookieMaxAge);
 //        System.out.println("redis " + redisService.getValues(email));
@@ -193,7 +200,11 @@ public class AuthService {
 
             // 로그인 여부 및 토큰 만료 시간 Cookie 설정
             String isLogin = "true";
-            String expTime = "expTime";
+            Date newExpTime = new Date(System.currentTimeMillis() + accExpTime);
+            SimpleDateFormat sdf;
+            sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+            sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+            String expTime = sdf.format(newExpTime);
             CookieUtil.addPublicCookie(response, "isLogin", isLogin, cookieMaxAge);
             CookieUtil.addPublicCookie(response, "expTime", expTime, cookieMaxAge);
 //
