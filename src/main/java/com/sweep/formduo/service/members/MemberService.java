@@ -1,6 +1,7 @@
 package com.sweep.formduo.service.members;
 
 import com.sweep.formduo.jwt.TokenProvider;
+import com.sweep.formduo.util.CookieUtil;
 import com.sweep.formduo.util.HeaderUtil;
 import com.sweep.formduo.domain.members.Members;
 import com.sweep.formduo.domain.members.MemberRepository;
@@ -16,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -48,7 +50,11 @@ public class MemberService {
      */
     @Transactional(readOnly = true)
     public MemberRespDTO getMyInfo(HttpServletRequest request) {
-        String accessToken = HeaderUtil.getAccessToken(request);
+//        String accessToken = HeaderUtil.getAccessToken(request);
+        String accessToken = CookieUtil.getCookie(request, "access_token")
+                .map(Cookie::getValue)
+                .orElse((null));
+//        System.out.println("ACCESS : " + accessToken);
         String email = tokenProvider.getMemberEmailByToken(accessToken);
         return memberRepository.findByEmail(email)
                 .map(MemberRespDTO::of)

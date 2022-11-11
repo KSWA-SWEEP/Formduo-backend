@@ -99,6 +99,12 @@ public class AuthService {
 
         CookieUtil.addCookie(response, "access_token", accessToken, cookieMaxAge);
         CookieUtil.addCookie(response, "refresh_token", refreshToken, cookieMaxAge);
+
+        // 로그인 여부 및 토큰 만료 시간 Cookie 설정
+        String isLogin = "true";
+        String expTime = "expTime";
+        CookieUtil.addPublicCookie(response, "isLogin", isLogin, cookieMaxAge);
+        CookieUtil.addPublicCookie(response, "expTime", expTime, cookieMaxAge);
 //        System.out.println("redis " + redisService.getValues(email));
 
         //mysql에 refresh token 저장
@@ -182,6 +188,12 @@ public class AuthService {
             CookieUtil.deleteCookie(request, response, "refresh_token");
             CookieUtil.addCookie(response, "access_token", newAccessToken, cookieMaxAge);
             CookieUtil.addCookie(response, "refresh_token", newRefreshToken, cookieMaxAge);
+
+            // 로그인 여부 및 토큰 만료 시간 Cookie 설정
+            String isLogin = "true";
+            String expTime = "expTime";
+            CookieUtil.addPublicCookie(response, "isLogin", isLogin, cookieMaxAge);
+            CookieUtil.addPublicCookie(response, "expTime", expTime, cookieMaxAge);
 //
 //        // 6. 저장소 정보 업데이트 (dirtyChecking으로 업데이트)
 //        refreshToken.updateValue(newRefreshToken);
