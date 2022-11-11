@@ -125,7 +125,7 @@ public class AuthService {
         /*
          *  accessToken 은 JWT Filter 에서 검증되고 옴
          * */
-        String originAccessToken = HeaderUtil.getAccessToken(request);
+//        String originAccessToken = HeaderUtil.getAccessToken(request);
         String originRefreshToken = CookieUtil.getCookie(request, "refresh_token")
                 .map(Cookie::getValue)
                 .orElse((null));
@@ -147,7 +147,8 @@ public class AuthService {
         }
 
         // 2. Access Token 에서 Member Email 가져오기
-        Authentication authentication = tokenProvider.getAuthentication(originAccessToken);
+        Authentication authentication = tokenProvider.getAuthentication(originRefreshToken);
+//        Authentication authentication = tokenProvider.getAuthentication(originAccessToken);
         log.debug("Authentication = {}", authentication);
 
 
@@ -170,7 +171,8 @@ public class AuthService {
 //        }
 
             // 5. 새로운 토큰 생성
-            String email = tokenProvider.getMemberEmailByToken(originAccessToken);
+            String email = tokenProvider.getMemberEmailByToken(originRefreshToken);
+//            String email = tokenProvider.getMemberEmailByToken(originAccessToken);
             Members members = customUserDetailsService.getMember(email);
 
             String newAccessToken = tokenProvider.createAccessToken(email, members.getAuthorities());
