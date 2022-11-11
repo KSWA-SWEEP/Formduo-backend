@@ -209,8 +209,17 @@ public class AuthService {
 
         String originAccessToken = HeaderUtil.getAccessToken(request);
 
-        CookieUtil.deleteCookie(request, response, "access_token");
-        CookieUtil.deleteCookie(request, response, "refresh_token");
+//        CookieUtil.deleteCookie(request, response, "access_token");
+//        CookieUtil.deleteCookie(request, response, "refresh_token");
+        String initValue = "";
+        CookieUtil.addCookie(response, "access_token", initValue,0);
+        CookieUtil.addCookie(response, "refresh_token", initValue, 0);
+
+        // 로그인 여부 및 토큰 만료 시간 Cookie 설정
+        String isLogin = "false";
+        String expTime = "expTime";
+        CookieUtil.addPublicCookie(response, "isLogin", isLogin, 0);
+        CookieUtil.addPublicCookie(response, "expTime", expTime, 0);
 
         Authentication authentication = tokenProvider.getAuthentication(originAccessToken);
         String email = authentication.getName();
