@@ -100,7 +100,7 @@ public class AuthService {
 
         int cookieMaxAge = (int) rtkLive / 60;
 
-        CookieUtil.addCookie(response, "access_token", accessToken, cookieMaxAge);
+//        CookieUtil.addCookie(response, "access_token", accessToken, cookieMaxAge);
         CookieUtil.addCookie(response, "refresh_token", refreshToken, cookieMaxAge);
 
         // 로그인 여부 및 토큰 만료 시간 Cookie 설정
@@ -122,7 +122,7 @@ public class AuthService {
                         .build()
         );
 
-        return tokenProvider.createTokenDTO(accessToken,refreshToken);
+        return tokenProvider.createTokenDTO(accessToken,refreshToken, expTime);
 
     }
 
@@ -177,6 +177,12 @@ public class AuthService {
 
 //        }
 
+            Date newExpTime = new Date(System.currentTimeMillis() + accExpTime);
+            SimpleDateFormat sdf;
+            sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+            sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+            String expTime = sdf.format(newExpTime);
+
             // 5. 새로운 토큰 생성
             String email = tokenProvider.getMemberEmailByToken(originRefreshToken);
 //            String email = tokenProvider.getMemberEmailByToken(originAccessToken);
@@ -184,7 +190,7 @@ public class AuthService {
 
             String newAccessToken = tokenProvider.createAccessToken(email, members.getAuthorities());
             String newRefreshToken = tokenProvider.createRefreshToken(email, members.getAuthorities());
-            TokenDTO tokenDto = tokenProvider.createTokenDTO(newAccessToken, newRefreshToken);
+            TokenDTO tokenDto = tokenProvider.createTokenDTO(newAccessToken, newRefreshToken, expTime);
 
             log.debug("refresh Origin = {}", originRefreshToken);
             log.debug("refresh New = {} ", newRefreshToken);
@@ -193,18 +199,13 @@ public class AuthService {
             redisService.setValues(email, newRefreshToken, Duration.ofMillis(rtkLive));
 
             int cookieMaxAge = (int) rtkLive / 60;
-            CookieUtil.deleteCookie(request, response, "access_token");
+//            CookieUtil.deleteCookie(request, response, "access_token");
             CookieUtil.deleteCookie(request, response, "refresh_token");
-            CookieUtil.addCookie(response, "access_token", newAccessToken, cookieMaxAge);
+//            CookieUtil.addCookie(response, "access_token", newAccessToken, cookieMaxAge);
             CookieUtil.addCookie(response, "refresh_token", newRefreshToken, cookieMaxAge);
 
             // 로그인 여부 및 토큰 만료 시간 Cookie 설정
             String isLogin = "true";
-            Date newExpTime = new Date(System.currentTimeMillis() + accExpTime);
-            SimpleDateFormat sdf;
-            sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-            sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
-            String expTime = sdf.format(newExpTime);
             CookieUtil.addPublicCookie(response, "isLogin", isLogin, cookieMaxAge);
             CookieUtil.addPublicCookie(response, "expTime", expTime, cookieMaxAge);
 //
@@ -225,7 +226,7 @@ public class AuthService {
 //        CookieUtil.deleteCookie(request, response, "access_token");
 //        CookieUtil.deleteCookie(request, response, "refresh_token");
         String initValue = "";
-        CookieUtil.addCookie(response, "access_token", initValue,0);
+//        CookieUtil.addCookie(response, "access_token", initValue,0);
         CookieUtil.addCookie(response, "refresh_token", initValue, 0);
 
         // 로그인 여부 및 토큰 만료 시간 Cookie 설정
