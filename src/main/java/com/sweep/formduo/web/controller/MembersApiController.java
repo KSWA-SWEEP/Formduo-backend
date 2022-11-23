@@ -28,7 +28,7 @@ public class MembersApiController {
 
 
     @Operation(summary = "자신 정보 조회", description = "자신의 정보를 요청합니다.")
-    @GetMapping("")
+    @PostMapping("")
     public MemberRespDTO getMyInfo(HttpServletRequest request) {
         return memberService.getMyInfo(request);
     }

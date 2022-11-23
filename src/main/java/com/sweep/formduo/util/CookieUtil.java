@@ -31,10 +31,10 @@ public class CookieUtil {
 //        Cookie cookie = new Cookie(name, value);
 
         ResponseCookie cookie = ResponseCookie.from(name, value)
-                .path("/")
-                .sameSite("None")
-                .secure(true)
-                .httpOnly(true)
+//                .path("/")
+//                .sameSite("None")
+//                .secure(true)
+//                .httpOnly(true)
                 .build();
 
 
@@ -50,10 +50,10 @@ public class CookieUtil {
 //        Cookie cookie = new Cookie(name, value);
 
         ResponseCookie cookie = ResponseCookie.from(name, value)
-                .path("/")
-                .sameSite("None")
-                .secure(true)
-                .httpOnly(false)
+//                .path("/")
+//                .sameSite("None")
+//                .secure(true)
+//                .httpOnly(false)
                 .build();
 
 
