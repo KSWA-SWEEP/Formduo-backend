@@ -11,6 +11,7 @@ import com.sweep.formduo.util.HeaderUtil;
 import com.sweep.formduo.service.members.CustomUserDetailsService;
 import com.sweep.formduo.util.CookieUtil;
 import com.sweep.formduo.web.dto.jwt.TokenDTO;
+import com.sweep.formduo.web.dto.jwt.TokenReqDTO;
 import com.sweep.formduo.web.dto.login.LoginReqDTO;
 import com.sweep.formduo.web.dto.members.MemberEmailDto;
 import com.sweep.formduo.web.dto.members.MemberReqDTO;
@@ -127,16 +128,18 @@ public class AuthService {
     }
 
     @Transactional
-    public TokenDTO reissue(HttpServletRequest request,
-                                       HttpServletResponse response) {
+    public TokenDTO reissue(TokenReqDTO tokenReqDTO,
+                            HttpServletResponse response) {
         /*
          *  accessToken 은 JWT Filter 에서 검증되고 옴
          * */
 //        String originAccessToken = HeaderUtil.getAccessToken(request);
-        String originRefreshToken = CookieUtil.getCookie(request, "refresh_token")
-                .map(Cookie::getValue)
-                .orElse((null));
+//        String originRefreshToken = CookieUtil.getCookie(request, "refresh_token")
+//                .map(Cookie::getValue)
+//                .orElse((null));
 
+        String originRefreshToken = tokenReqDTO.getRefreshToken();
+        System.out.println(originRefreshToken);
 //        String originRefreshToken = tokenRequestDto.getRefreshToken(request);
 //        String originAccessToken = tokenRequestDto.getAccessToken();
 //        String originRefreshToken = tokenRequestDto.getRefreshToken();
@@ -200,7 +203,7 @@ public class AuthService {
 
             int cookieMaxAge = (int) rtkLive / 60;
 //            CookieUtil.deleteCookie(request, response, "access_token");
-            CookieUtil.deleteCookie(request, response, "refresh_token");
+//            CookieUtil.deleteCookie(request, response, "refresh_token");
 //            CookieUtil.addCookie(response, "access_token", newAccessToken, cookieMaxAge);
             CookieUtil.addCookie(response, "refresh_token", newRefreshToken, cookieMaxAge);
 

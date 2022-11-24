@@ -2,6 +2,7 @@ package com.sweep.formduo.web.controller;
 
 import com.sweep.formduo.domain.members.Members;
 import com.sweep.formduo.web.dto.jwt.TokenDTO;
+import com.sweep.formduo.web.dto.jwt.TokenReqDTO;
 import com.sweep.formduo.web.dto.login.LoginReqDTO;
 import com.sweep.formduo.web.dto.members.MemberEmailDto;
 import com.sweep.formduo.web.dto.members.MemberReqDTO;
@@ -86,9 +87,9 @@ public class AuthApisController {
 //    }
 
     @PostMapping("/reissue")
-    public TokenDTO reissue( HttpServletRequest request,
+    public TokenDTO reissue(@RequestBody TokenReqDTO tokenReqDTO,
                             HttpServletResponse response
     ) {
-        return authService.reissue(request, response);
+        return authService.reissue(tokenReqDTO, response);
     }
 }
