@@ -50,7 +50,7 @@ class SurveyRespServiceTest {
     @Test
     @DisplayName("설문에 대한 전체 응답 조회")
     public void 전체_응답_조회() throws Exception {
-        this.mockMvc.perform(get("/api/v1/surveys/354/resp")
+        this.mockMvc.perform(get("/api/v1/surveys/533/resp")
                 .header("Authorization", "Bearer "+ token))
                 .andExpect(status().isOk());
     }
