@@ -117,7 +117,7 @@ class SurveyServiceTest {
         content.put("svyRespMax", 0);
 
         this.mockMvc.perform(
-                        get("/api/v1/surveys/153")
+                        get("/api/v1/surveys/585")
                                 .header("Authorization", "Bearer "+token)
 //                                .contentType(MediaType.APPLICATION_JSON)
 //                                .content(objectMapper.writeValueAsString(content)))
@@ -149,7 +149,7 @@ class SurveyServiceTest {
 //        params.add("type", "basic");
 
         this.mockMvc.perform(
-                        delete("/api/v1/surveys/150")
+                        delete("/api/v1/surveys/585")
                                 .header("Authorization", "Bearer "+token)
 //                                .params(params)
 //                                .contentType(MediaType.APPLICATION_JSON)

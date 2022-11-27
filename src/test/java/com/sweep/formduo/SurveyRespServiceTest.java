@@ -40,7 +40,7 @@ class SurveyRespServiceTest {
     @DisplayName("설문 응답 조회")
     public void 개별_설문_응답_조회() throws Exception {
         this.mockMvc.perform(
-                get("/api/v1/surveys/resp/200")
+                get("/api/v1/surveys/resp/334")
                         .header("Authorization", "Bearer "+ token)
                         .contentType(MediaType.APPLICATION_JSON))
 //                        .content(objectMapper.writeValueAsString(content)))
