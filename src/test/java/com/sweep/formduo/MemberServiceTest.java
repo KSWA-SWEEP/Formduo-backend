@@ -66,7 +66,7 @@ class MemberServiceTest {
     void 내_정보_좀_알려주세요() throws Exception {
 
         this.mockMvc.perform(
-                        post("/api/v1/members")
+                        get("/api/v1/members")
                                 .header("Authorization", "Bearer "+token)
 //                                .params(params)
 //                                .contentType(MediaType.APPLICATION_JSON)
