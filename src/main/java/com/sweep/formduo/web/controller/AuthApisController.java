@@ -49,8 +49,8 @@ public class AuthApisController {
 
     @PostMapping("/login")
     public TokenDTO login(
-            HttpServletResponse response,
-            @RequestBody LoginReqDTO loginReqDTO) {
+            @RequestBody LoginReqDTO loginReqDTO,
+            HttpServletResponse response) {
         return authService.login(loginReqDTO, response);
     }
 
